@@ -28,4 +28,4 @@ if choice == 1:
 elif choice == 2:
 	followers = client.get_followers(user=input("Username: "), count=50)
 	for follower in followers:
-		print(type(follower))
+		print(follower['username'])
