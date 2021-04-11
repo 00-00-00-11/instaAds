@@ -24,6 +24,16 @@ print("2- Fetch")
 choice = int(input('Choose by number: '))
 
 if choice == 1:
-	...
+	for user in DataBase.GetFromDB():
+
+		if not int(user[3]):
+			try:
+				DataBase.SendUpdate(user[1], 2)
+				client.send_dm(user[1], '')
+				client.send_dm(user[1], '')
+				print(f"Sending to {user[1]} "+"\033[32m"+"Success"+"\033[0m")
+			except:
+				DataBase.SendUpdate(user[1], 1)
+				print(f"Sending to {user[1]} "+"\033[31m"+"Failed"+"\033[0m")
 elif choice == 2:
 	client.get_followers(user=input("Username: "), count=None)

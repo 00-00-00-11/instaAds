@@ -23,10 +23,10 @@ class DataBase:
 
 
     @classmethod
-    def SendUpdate(self,uID):
-        value = 1
+    def SendUpdate(self,uID, val):
+        value = val
         with conn:
-            c.execute(f"UPDATE Users SET send = {value} WHERE uID = {uID}")
+            c.execute(f"UPDATE Users SET send = {value} WHERE uID = '{uID}'")
     
     @classmethod
     def Status(self,uID):
