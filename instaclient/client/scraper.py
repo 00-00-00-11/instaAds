@@ -19,7 +19,7 @@
 # along with this program.  If not, see [http://www.gnu.org/licenses/].
 from instaclient.client.constants import QueryHashes
 import json, requests
-
+from database import DataBase
 from instaclient.client import *
 if TYPE_CHECKING:
     from instaclient.client.instaclient import InstaClient
@@ -519,8 +519,9 @@ class Scraper(Component):
                 status = result.get('status')
                 if not status == 'ok':
                     if result.get('message') == 'rate limited':
-                        LOGGER.exception('Rate limit reached. Stopping scrape.')
-                        break
+                        #LOGGER.exception('Rate limit reached. Stopping scrape.')
+                        time.sleep(10)
+                        continue
                     else:
                         LOGGER.exception(f'The request with cursor {cursor} failed')
                         break
@@ -538,6 +539,13 @@ class Scraper(Component):
                 
                 for user_data in data['edges']:
                     user = user_data['node']
+
+                    # Add to database
+                    if not DataBase.Status(user['username']):
+                        newData = DataBase(user['username'], user['username'], 0)
+                        newData.GoToDB()
+                        print(f"Adding {user['username']} to database")
+
                     follower = Profile(
                         client = self,
                         id = user['id'],
