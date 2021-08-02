@@ -2,7 +2,7 @@ import json
 import requests
 
 def send(users):
-    users_list = ','.join([f"{user}" for user in users])
+    users_list = ','.join([f'"{user}"' for user in users])
     url = "https://i.instagram.com/api/v1/direct_v2/create_group_thread/"
     payload = f'recipient_users=[{users_list}]'
     headers = {
