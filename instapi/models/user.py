@@ -17,6 +17,7 @@ if TYPE_CHECKING:  # pragma: no cover
 
 
 class User(Entity):
+    pk: int
     username: str
     full_name: str
     is_private: bool
