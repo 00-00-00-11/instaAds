@@ -1,7 +1,7 @@
 import os
 from instapi import bind
 from instapi import User
-from databases import DataBase
+from database import DataBase
 from dotenv import load_dotenv; load_dotenv()
 
 username = os.getenv('username')
