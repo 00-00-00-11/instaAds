@@ -6,7 +6,6 @@ from dotenv import load_dotenv; load_dotenv()
 
 username = os.getenv('username')
 password = os.getenv('password')
-username_for_data = os.getenv('username_for_data')
 
 bind(username, password)
 
@@ -17,7 +16,8 @@ print("2- Send group message")
 choice = int(input("Choose by number: "))
 
 if choice == 1:
-    followers = User.from_username(username_for_data).followers()
+    target_username = input("\nUsername to get followers: ")
+    followers = User.from_username(target_username).followers()
 
     for follower in followers:
         print(f"Adding {follower.username} to database")
