@@ -26,4 +26,4 @@ if choice == 1:
             newUser = DataBase(follower.username, follower.pk, 0)
             newUser.GoToDB()
 elif choice == 2:
-    DM.send(None)
+    DM.send(["16817136641","2109565415"])

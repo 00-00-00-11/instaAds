@@ -1,9 +1,10 @@
+import json
 import requests
 
 def send(users):
+    users_list = ','.join([f"{user}" for user in users])
     url = "https://i.instagram.com/api/v1/direct_v2/create_group_thread/"
-
-    payload='recipient_users=["16817136641","2109565415"]'
+    payload = f'recipient_users=[{users_list}]'
     headers = {
         'content-type': 'application/x-www-form-urlencoded',
         'cookie': 'mid=YOvhfwAEAAH1u2rPBKyUESPbPqjZ; ig_did=37685605-DCA7-4403-973D-61C307DC3746; ds_user_id=11949406014; shbid="5458\05411949406014\0541659443397:01f78543a69d079d3e542ede4c362075d4fba306d69ff2cbd1850c11658352d6b86144ba"; shbts="1627907397\05411949406014\0541659443397:01f7e61225c558028170da80e87aa85e86ebfa35cfd5e1352729c15498f3691438dcdab8"; csrftoken=Mv1vPsfWA6yIvLo7kIwPsRzaAGOetoe9; sessionid=11949406014%3AH31Z0VAytoBAW3%3A18; rur="ASH\05411949406014\0541659463883:01f7937d630a2b42ab11a82c235513d2dd24fa3d5ba1c53536a6bff90fdbfbbad63b9719"',
