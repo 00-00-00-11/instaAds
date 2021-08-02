@@ -4,3 +4,5 @@ username=
 password=
 
 username_for_data=
+
+message=

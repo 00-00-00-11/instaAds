@@ -10,9 +10,18 @@ username_for_data = os.getenv('username_for_data')
 
 bind(username, password)
 
-followers = User.from_username(username_for_data).followers()
+print(f"{DataBase.nCount()}/{DataBase.Count()} Users\n")
+print("1- Get followers")
+print("2- Send group message")
 
-for follower in followers:
-    print(f"Adding {follower.username} to database")
-    newUser = DataBase(follower.username, follower.pk, 0)
-    newUser.GoToDB()
+choice = int(input("Choose by number: "))
+
+if choice == 1:
+    followers = User.from_username(username_for_data).followers()
+
+    for follower in followers:
+        print(f"Adding {follower.username} to database")
+        newUser = DataBase(follower.username, follower.pk, 0)
+        newUser.GoToDB()
+elif choice == 2:
+    ...
