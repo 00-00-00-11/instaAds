@@ -20,8 +20,9 @@ if choice == 1:
     followers = User.from_username(target_username).followers()
 
     for follower in followers:
-        print(f"Adding {follower.username} to database")
-        newUser = DataBase(follower.username, follower.pk, 0)
-        newUser.GoToDB()
+        if not DataBase.Status(follower.pk):
+            print(f"Adding {follower.username} to database")
+            newUser = DataBase(follower.username, follower.pk, 0)
+            newUser.GoToDB()
 elif choice == 2:
     ...
