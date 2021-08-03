@@ -28,13 +28,11 @@ if choice == 1:
             newUser.GoToDB()
 elif choice == 2:
     dm = DM()
-    
     for user in DataBase.GetFromDB():
         if not user[-1]:
+            if dm.create([user[2]]) and dm.send_text('asdasd'):
+                print(f"Sending to {user[1]} "+"\033[32m"+"Success"+"\033[0m")
+            else:
+                print(f"Sending to {user[1]} "+"\033[31m"+"Failed"+"\033[0m")
 
-            if dm.create([user[3]]) and dm.send_text('asdasd') and dm.send_link('sdfsdf'):
-				print(f"Sending to {user[1]} "+"\033[32m"+"Success"+"\033[0m")
-			else:
-				print(f"Sending to {user[1]} "+"\033[31m"+"Failed"+"\033[0m")
-
-            DataBase.SendUpdate(user[3], 1)
+            DataBase.SendUpdate(user[2], 1)

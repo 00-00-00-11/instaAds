@@ -34,6 +34,7 @@ class DM:
 
         try:
             self.thread_id = json.loads(response.text)['thread_id']
+            return True
         except:
             return False
 
