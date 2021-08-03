@@ -4,6 +4,7 @@ from instapi.client import client
 
 class DM:
     cookie = ''
+    thread_id = ''
 
     def __init__(self):
         for cookie in client.obj.cookie_jar:
