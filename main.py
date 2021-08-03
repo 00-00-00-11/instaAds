@@ -1,5 +1,5 @@
 import os
-import DM
+from DM import DM
 from instapi import bind
 from instapi import User
 from database import DataBase
@@ -26,4 +26,6 @@ if choice == 1:
             newUser = DataBase(follower.username, follower.pk, 0)
             newUser.GoToDB()
 elif choice == 2:
-    DM.send(["16817136641","2109565415"])
+    dm = DM(User)
+    dm.create(["16817136641","2109565415"])
+    #dm.send()
