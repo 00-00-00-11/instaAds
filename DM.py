@@ -15,16 +15,17 @@ class DM:
             self.cookie += f'{cookie.name}={cookie.value}; '
 
         self.headers = {
-            'content-type': 'application/x-www-form-urlencoded',
-            'cookie': self.cookie,
-            'origin': 'https://www.instagram.com',
-            'referer': 'https://www.instagram.com/',
-            'user-agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.164 Safari/537.36 OPR/77.0.4054.277',
-            'x-asbd-id': '437806',
-            'x-csrftoken': self.csrf,
-            'x-ig-app-id': '936619743392459',
-            'x-ig-www-claim': 'hmac.AR0k9m2HW_nPQhYTXtxXPmFsBiV8xAZ_1IfrhbxRguU3UDMV',
-            'x-instagram-ajax': '8c4f274ffe7f'
+            'Cookie': self.cookie,
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'User-Agent': 'Instagram 76.0.0.15.395 Android (24/7.0; 640dpi; 1440x2560; samsung; SM-G930F; herolte; samsungexynos8890; en_US; 138226743)',
+            'X-IG-Capabilities': '3brTvw==',
+            'X-IG-Connection-Type': 'WIFI',
+            'X-IG-Connection-Speed': '3555kbps',
+            'X-IG-App-ID': '567067343352427',
+            'X-IG-Bandwidth-Speed-KBPS': '-1.000',
+            'X-IG-Bandwidth-TotalBytes-B': '0',
+            'X-IG-Bandwidth-TotalTime-MS': '0',
+            'X-FB-HTTP-Engine': 'Liger',
         }
 
     def create(self, users):
@@ -38,5 +39,5 @@ class DM:
         except:
             print(response.text)
 
-    def send(self):
+    def send(self, message, type='text'):
         print(self.thread_id)

@@ -2,5 +2,3 @@
 username=
 
 password=
-
-message=

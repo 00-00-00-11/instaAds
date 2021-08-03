@@ -8,7 +8,7 @@ from dotenv import load_dotenv; load_dotenv()
 username = os.getenv('username')
 password = os.getenv('password')
 
-print('Login...\n')
+print('Login...')
 bind(username, password)
 
 print(f"{DataBase.nCount()}/{DataBase.Count()} Users\n")
@@ -29,4 +29,4 @@ if choice == 1:
 elif choice == 2:
     dm = DM()
     dm.create(["16817136641","2109565415"])
-    dm.send()
+    dm.send('sdfsdf')
