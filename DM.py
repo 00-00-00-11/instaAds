@@ -36,12 +36,6 @@ class DM:
         except:
             return False
 
-    def send(self, message, type='text'):
-        if type == 'text':
-            self.send_text(message)
-        elif type == 'link':
-            self.send_link(message)
-
     def send_text(self, text):
         url = "https://i.instagram.com/api/v1/direct_v2/threads/broadcast/text/"
         payload = {
