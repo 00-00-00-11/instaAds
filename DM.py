@@ -1,9 +1,6 @@
-import os
 import json
 import requests
 from instapi.client import client
-
-message = os.getenv('message')
 
 class DM:
     cookie = ''
@@ -37,7 +34,7 @@ class DM:
         try:
             self.thread_id = json.loads(response.text)['thread_id']
         except:
-            print(response.text)
+            return False
 
     def send(self, message, type='text'):
         if type == 'text':
