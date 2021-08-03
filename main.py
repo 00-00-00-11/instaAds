@@ -40,6 +40,9 @@ elif choice == 2:
                     if json.loads(ch_result)['message'] == 'Unloadable participant':
                         print(f"Sending to {user[1]} "+"\033[31m"+"User not available"+"\033[0m")
                         DataBase.SendUpdate(user[2], 1)
+                    elif json.loads(ch_result)['message'] == 'challenge_required':
+                        print("\033[31m"+"\nUser has been banned\n"+"\033[0m")
+                        exit()
                     else:
                         raise Exception()
                 except:
