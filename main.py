@@ -30,7 +30,7 @@ elif choice == 2:
     dm = DM()
     for user in DataBase.GetFromDB():
         if not user[-1]:
-            if dm.create([user[2]]) and dm.send_text('asdasd'):
+            if dm.create([user[2]]) and dm.send_text('text') and dm.send_link('https://example.com'):
                 print(f"Sending to {user[1]} "+"\033[32m"+"Success"+"\033[0m")
             else:
                 print(f"Sending to {user[1]} "+"\033[31m"+"Failed"+"\033[0m")
