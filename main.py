@@ -8,6 +8,7 @@ from dotenv import load_dotenv; load_dotenv()
 username = os.getenv('username')
 password = os.getenv('password')
 
+print('Login...\n')
 bind(username, password)
 
 print(f"{DataBase.nCount()}/{DataBase.Count()} Users\n")

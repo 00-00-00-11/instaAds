@@ -3,6 +3,8 @@ import json
 import requests
 from instapi.client import client
 
+message = os.getenv('message')
+
 class DM:
     cookie = ''
 
@@ -30,7 +32,11 @@ class DM:
         url = "https://i.instagram.com/api/v1/direct_v2/create_group_thread/"
         payload = f'recipient_users=[{users_list}]'
         response = requests.request("POST", url, headers=self.headers, data=payload)
-        print(response.text)
+
+        try:
+            self.thread_id = json.loads(response.text)['thread_id']
+        except:
+            print(response.text)
 
     def send(self):
-        ...
+        print(self.thread_id)
