@@ -40,4 +40,34 @@ class DM:
             print(response.text)
 
     def send(self, message, type='text'):
-        print(self.thread_id)
+        if type == 'text':
+            self.send_text(message)
+        elif type == 'link':
+            self.send_link(message)
+
+    def send_text(self, text):
+        url = "https://i.instagram.com/api/v1/direct_v2/threads/broadcast/text/"
+        payload = {
+            '_csrftoken': self.csrf,
+            '_uuid': '8ac7d712-f428-11eb-9e56-ef1f9492b890',
+            '_uid': '11949406014',
+            'action': 'send_item',
+            'thread_ids': f'["{self.thread_id}"]',
+            'text': text
+        }
+        response = requests.request("POST", url, headers=self.headers, data=payload)
+        print(response.status_code)
+
+    def send_link(self, link):
+        url = "https://i.instagram.com/api/v1/direct_v2/threads/broadcast/link/"
+        payload = {
+            '_csrftoken': self.csrf,
+            '_uuid': '8ac7d712-f428-11eb-9e56-ef1f9492b890',
+            '_uid': '11949406014',
+            'action': 'send_item',
+            'thread_ids': f'["{self.thread_id}"]',
+            'link_text': link,
+            'link_urls': f'["{link}"]'
+        }
+        response = requests.request("POST", url, headers=self.headers, data=payload)
+        print(response.status_code)
