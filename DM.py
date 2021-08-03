@@ -8,6 +8,8 @@ class DM:
 
     def __init__(self):
         for cookie in client.obj.cookie_jar:
+            if cookie.name == 'csrftoken':
+                self.csrf = cookie.value
             self.cookie += f'{cookie.name}={cookie.value}; '
 
         self.headers = {
