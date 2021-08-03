@@ -56,7 +56,9 @@ class DM:
             'text': text
         }
         response = requests.request("POST", url, headers=self.headers, data=payload)
-        print(response.status_code)
+        if response.status_code == 200:
+            return True
+        return False
 
     def send_link(self, link):
         url = "https://i.instagram.com/api/v1/direct_v2/threads/broadcast/link/"
@@ -70,4 +72,6 @@ class DM:
             'link_urls': f'["{link}"]'
         }
         response = requests.request("POST", url, headers=self.headers, data=payload)
-        print(response.status_code)
+        if response.status_code == 200:
+            return True
+        return False
