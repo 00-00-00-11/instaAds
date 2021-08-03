@@ -8,8 +8,6 @@ class DM:
 
     def __init__(self):
         for cookie in client.obj.cookie_jar:
-            if cookie.name == 'csrftoken':
-                self.csrf = cookie.value
             self.cookie += f'{cookie.name}={cookie.value}; '
 
         self.headers = {
@@ -36,7 +34,7 @@ class DM:
             self.thread_id = json.loads(response.text)['thread_id']
             return True
         except:
-            return False
+            return response.text
 
     def send_text(self, text):
         url = "https://i.instagram.com/api/v1/direct_v2/threads/broadcast/text/"
