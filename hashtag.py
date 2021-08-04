@@ -7,7 +7,7 @@ class HashTag(DM):
     def __init__(self, tag):
         super().__init__()
         self.tag = tag
-        page = 1
+        page = 0
         count = 0
         count_posts = self.count_posts()
         print(str(count_posts) + " Posts Available")
@@ -21,11 +21,12 @@ class HashTag(DM):
         }
 
         while count_posts >= count:
-            print(f"\nFetching Page {page}")
+            print(f"\nFetching Page {page+1}")
             payload['page'] = page
             response = requests.request("POST", url, headers=self.headers, data=payload)
             data = json.loads(response.text)
-            payload['max_id'] = data['next_max_id']
+            if data['more_available']
+                payload['max_id'] = data['next_max_id']
 
             for section in data['sections']:
                 for media in section['layout_content']['medias']:
