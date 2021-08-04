@@ -29,13 +29,11 @@ class HashTag(DM):
                     media = media['media']
                     user = media['user']
                     add_user(user['username'], user['pk'])
+                    count += 1
 
             page += 1
-
-            # //////////////-------------------------------------
-            #if not data['more_available']:
-            break
-            # //////////////-------------------------------------
+            if not data['more_available']:
+                break
 
         print("Done.")
 
