@@ -1,0 +1,50 @@
+import json
+import requests
+from DM import DM
+from database import DataBase
+
+class HashTag(DM):
+    def __init__(self, tag, get_likers=False):
+        super().__init__()
+        self.tag = tag
+        page = 0
+        count = 0
+        count_posts = self.count_posts()
+        print(str(count_posts) + " Posts Available")
+
+        url = f"https://i.instagram.com/api/v1/tags/{self.tag}/sections/"
+        payload = {
+            'page': page,
+            'tab': 'recent'
+        }
+
+        while count_posts >= count:
+            print(f"\nFetching Page {page+1}")
+            payload['page'] = page
+            response = requests.request("POST", url, headers=self.headers, data=payload)
+            data = json.loads(response.text)
+
+            for section in data['sections']:
+                for media in section['layout_content']['medias']:
+                    user = media['user']
+                    if get_likers:
+                        print("Likers Enabled")
+                        likers = media['likers']
+
+            page += 1
+
+            # //////////////-------------------------------------
+            #if not data['more_available']:
+            break
+            # //////////////-------------------------------------
+
+        print("Done.")
+
+    def count_posts(self):
+        url = f"https://www.instagram.com/explore/tags/{self.tag}/?__a=1"
+        response = requests.request("GET", url, headers=self.headers)
+        try:
+            return json.loads(response.text)['data']['media_count']
+        except:
+            print("\033[31m"+"\nCounting Posts Failed\n"+"\033[0m")
+            exit()

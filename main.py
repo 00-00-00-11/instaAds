@@ -3,6 +3,7 @@ import json
 from DM import DM
 from instapi import bind
 from instapi import User
+from hashtag import HashTag
 from database import DataBase
 from dotenv import load_dotenv; load_dotenv()
 
@@ -14,7 +15,8 @@ bind(username, password)
 
 print(f"{DataBase.nCount()}/{DataBase.Count()} Users\n")
 print("1- Get followers")
-print("2- Send group message")
+print("2- Get users by hashtag")
+print("3- Send group message")
 
 choice = int(input("Choose by number: "))
 
@@ -28,6 +30,10 @@ if choice == 1:
             newUser = DataBase(follower.username, follower.pk, 0)
             newUser.GoToDB()
 elif choice == 2:
+    tag = input("#")
+    likers = input("Do you also want the likers?[y/n]: ").lower()
+    HashTag(tag, True if likers == 'y' else False)
+elif choice == 3:
     dm = DM()
     for user in DataBase.GetFromDB():
         if not user[-1]:
