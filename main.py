@@ -18,7 +18,7 @@ bind(username, password)
 print(f"{DataBase.nCount()}/{DataBase.Count()} Users\n")
 print("1- Get followers")
 print("2- Get users by hashtag")
-print("3- Send group message")
+print("3- Send message")
 
 choice = int(input("Choose by number: "))
 
