@@ -26,10 +26,11 @@ if choice == 1:
 
     for follower in followers:
         add_user(follower.username, follower.pk)
+
 elif choice == 2:
-    tag = input("#")
-    likers = input("Do you also want the likers?[y/n]: ").lower()
-    HashTag(tag, True if likers == 'y' else False)
+    tag = input("\n#")
+    HashTag(tag)
+
 elif choice == 3:
     dm = DM()
     for user in DataBase.GetFromDB():

@@ -4,7 +4,7 @@ from DM import DM
 from database import DataBase
 
 class HashTag(DM):
-    def __init__(self, tag, get_likers=False):
+    def __init__(self, tag):
         super().__init__()
         self.tag = tag
         page = 0
@@ -28,9 +28,7 @@ class HashTag(DM):
                 for media in section['layout_content']['medias']:
                     media = media['media']
                     user = media['user']
-
-                    if get_likers:
-                        likers = media['likers']
+                    add_user(user['username'], user['pk'])
 
             page += 1
 
