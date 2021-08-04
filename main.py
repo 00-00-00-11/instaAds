@@ -3,7 +3,7 @@ import json
 from DM import DM
 from instapi import bind
 from instapi import User
-from hashtag import HashTag
+from hashtag import HashTag, add_user
 from database import DataBase
 from dotenv import load_dotenv; load_dotenv()
 
@@ -25,10 +25,7 @@ if choice == 1:
     followers = User.from_username(target_username).followers()
 
     for follower in followers:
-        if not DataBase.Status(follower.pk):
-            print(f"Adding {follower.username} to database")
-            newUser = DataBase(follower.username, follower.pk, 0)
-            newUser.GoToDB()
+        add_user(follower.username, follower.pk)
 elif choice == 2:
     tag = input("#")
     likers = input("Do you also want the likers?[y/n]: ").lower()

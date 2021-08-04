@@ -26,9 +26,10 @@ class HashTag(DM):
 
             for section in data['sections']:
                 for media in section['layout_content']['medias']:
+                    media = media['media']
                     user = media['user']
+
                     if get_likers:
-                        print("Likers Enabled")
                         likers = media['likers']
 
             page += 1
@@ -48,3 +49,9 @@ class HashTag(DM):
         except:
             print("\033[31m"+"\nCounting Posts Failed\n"+"\033[0m")
             exit()
+
+def add_user(username, user_id):
+    if not DataBase.Status(user_id):
+        print(f"Adding {username} to database")
+        newUser = DataBase(username, user_id, 0)
+        newUser.GoToDB()
