@@ -9,12 +9,14 @@ class HashTag(DM):
         self.tag = tag
         page = 1
         count = 0
+        max_id = ''
         count_posts = self.count_posts()
         print(str(count_posts) + " Posts Available")
 
         url = f"https://i.instagram.com/api/v1/tags/{self.tag}/sections/"
         payload = {
             'page': page,
+            'max_id': max_id,
             'tab': 'recent',
             'surface': 'grid',
             'include_persistent': 0
@@ -23,8 +25,10 @@ class HashTag(DM):
         while count_posts >= count:
             print(f"\nFetching Page {page}")
             payload['page'] = page
+            payload['max_id'] = max_id
             response = requests.request("POST", url, headers=self.headers, data=payload)
             data = json.loads(response.text)
+            max_id = data['next_max_id']
 
             for section in data['sections']:
                 for media in section['layout_content']['medias']:
