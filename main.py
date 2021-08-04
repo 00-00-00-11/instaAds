@@ -1,5 +1,6 @@
 import os
 import json
+import time
 from DM import DM
 from instapi import bind
 from instapi import User
@@ -7,6 +8,7 @@ from hashtag import HashTag, add_user
 from database import DataBase
 from dotenv import load_dotenv; load_dotenv()
 
+delay = os.getenv('delay')
 username = os.getenv('username')
 password = os.getenv('password')
 
@@ -51,3 +53,4 @@ elif choice == 3:
                         raise Exception()
                 except:
                     print(f"Sending to {user[1]} "+"\033[31m"+"Failed"+"\033[0m")
+            time.sleep(int(delay))
