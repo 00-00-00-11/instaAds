@@ -7,7 +7,7 @@ class HashTag(DM):
     def __init__(self, tag):
         super().__init__()
         self.tag = tag
-        page = 0
+        page = 1
         count = 0
         count_posts = self.count_posts()
         print(str(count_posts) + " Posts Available")
@@ -15,11 +15,13 @@ class HashTag(DM):
         url = f"https://i.instagram.com/api/v1/tags/{self.tag}/sections/"
         payload = {
             'page': page,
-            'tab': 'recent'
+            'tab': 'recent',
+            'surface': 'grid',
+            'include_persistent': 0
         }
 
         while count_posts >= count:
-            print(f"\nFetching Page {page+1}")
+            print(f"\nFetching Page {page}")
             payload['page'] = page
             response = requests.request("POST", url, headers=self.headers, data=payload)
             data = json.loads(response.text)
@@ -33,6 +35,7 @@ class HashTag(DM):
 
             page += 1
             if not data['more_available']:
+                print("No more data available")
                 break
 
         print("Done.")
