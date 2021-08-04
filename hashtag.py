@@ -25,7 +25,7 @@ class HashTag(DM):
             payload['page'] = page
             response = requests.request("POST", url, headers=self.headers, data=payload)
             data = json.loads(response.text)
-            if data['more_available']
+            if data['more_available']:
                 payload['max_id'] = data['next_max_id']
 
             for section in data['sections']:
@@ -37,7 +37,7 @@ class HashTag(DM):
 
             page += 1
             if not data['more_available']:
-                print("No more data available")
+                print("No more posts available")
                 break
 
         print("Done.")
